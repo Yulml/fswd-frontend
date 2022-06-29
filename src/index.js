@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import store from "./store/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.module.css";
 import Header from "./components/header/Header";
@@ -9,11 +11,13 @@ import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Header />
-    <Main />
-    <Footer />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Header />
+      <Main />
+      <Footer />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

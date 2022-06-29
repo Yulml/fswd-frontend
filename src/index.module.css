@@ -29,6 +29,9 @@
   justify-content: center;
   align-items: center;
 }
+.flexColumn {
+  flex-direction: column;
+}
 .w100{
   width: 100%;
 }
