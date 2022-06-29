@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser } from "../../store/loginSlice";
+import { addNewUser, signIn } from "../../store/loginSlice";
 import styles from "../../index.module.css";
 import Spinner from "../spinner/Spinner";
 import Alert from "../alert/Alert";
 
-function RegisterPage() {
+function AccessForm(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.login.data);
   const loading = useSelector((state) => state.login.login.loading);
@@ -17,13 +17,21 @@ function RegisterPage() {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(data);
-    dispatch(addNewUser(data)).then(() => {
-      setData({
-        email: "",
-        password: "",
+    if (props.action === "Register") {
+      dispatch(addNewUser(data)).then(() => {
+        setData({
+          email: "",
+          password: "",
+        });
       });
-    });
+    } else {
+      dispatch(signIn(data)).then(() => {
+        setData({
+          email: "",
+          password: "",
+        });
+      });
+    }
   };
 
   const handleChange = (event) => {
@@ -36,15 +44,19 @@ function RegisterPage() {
   return (
     <div className={`${styles.flexCenter} ${styles.flexColumn} ${styles.h100}`}>
       {loading && <Spinner />}
-      {status === "succeeded" && user.status === "failed" && (
-        <Alert type="error" message={user.error} />
-      )}
-      {status === "succeeded" && user.status === "succeeded" && (
-        <Alert type="success" message={user.data.info} />
-      )}
+      {status === "succeeded" &&
+        user.status === "failed" &&
+        props.type === "Register" && (
+          <Alert type="error" message={user.error} />
+        )}
+      {status === "succeeded" &&
+        user.status === "succeeded" &&
+        props.type === "Register" && (
+          <Alert type="success" message={user.data.info} />
+        )}
       {!loading && (
         <form className={styles.defaultForm} onSubmit={handleSubmit}>
-          <h3 className={styles.flexCenter}>Create your account</h3>
+          <h3 className={styles.flexCenter}>{props.title}</h3>
           <input
             type="email"
             name="email"
@@ -61,11 +73,11 @@ function RegisterPage() {
             onChange={handleChange}
             required
           />
-          <button type="submit">Register</button>
+          <button type="submit">{props.action}</button>
         </form>
       )}
     </div>
   );
 }
 
-export default RegisterPage;
+export default AccessForm;

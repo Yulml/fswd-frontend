@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginActions } from "../../store/loginSlice";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
-  const [logged, setLogged] = useState(false);
+  const logged = useSelector((state) => state.login.login.isLogged);
 
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(loginActions.logOut());
+  };
   return (
     <header>
       <ul className={styles.nav}>
@@ -22,7 +27,6 @@ function Header() {
         </li>
         {!logged && (
           <li className={styles.navRight}>
-            {/* <Link to="">Access</Link> */}
             Access
             <ul className={styles.dropDown}>
               <li>
@@ -36,7 +40,9 @@ function Header() {
         )}
         {logged && (
           <li className={styles.navRight}>
-            <Link to="">Log out</Link>
+            <Link to="/" onClick={handleLogOut}>
+              Log out
+            </Link>
           </li>
         )}
       </ul>

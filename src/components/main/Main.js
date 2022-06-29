@@ -2,10 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import styles from "./Main.module.css";
 import MainPage from "./MainPage";
 import ContactPage from "./Contact";
-import Login from "./Login";
-import Register from "./Register";
 import AboutPage from "./About";
 import SupportPage from "./Support";
+import AccessForm from "./AccessForm";
 
 function Main() {
   return (
@@ -15,8 +14,11 @@ function Main() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<AccessForm title="Welcome" action="Sign In" />} />
+        <Route
+          path="/register"
+          element={<AccessForm title="Create your account" action="Register" />}
+        />
       </Routes>
     </div>
   );

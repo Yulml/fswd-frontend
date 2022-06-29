@@ -28,9 +28,9 @@
   background-color: var(--red);
   color: #fff;
 }
-.nav > .navRight > a:first-of-type {
+/* .nav > .navRight > a.noClick {
   pointer-events: none;
-}
+} */
 .dropDown {
   display: none;
   position: absolute;
