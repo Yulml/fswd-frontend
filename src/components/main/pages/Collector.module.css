@@ -1,0 +1,25 @@
+
+.avatar {
+  width: 350px;
+  height: 350px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 10%;
+}
+/* Grow */
+.hvrGrow {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.hvrGrow:hover,
+.hvrGrow:focus,
+.hvrGrow:active {
+  transform: scale(1.1);
+}

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const baseURL = "http://localhost:8000/login";
+const baseURL = "http://localhost/fswd-backend/public/index.php/api/user";
 
 const defaultData = {
   data: {},

@@ -4,6 +4,7 @@ import { addNewUser, signIn } from "../../store/loginSlice";
 import styles from "../../index.module.css";
 import Spinner from "../spinner/Spinner";
 import Alert from "../alert/Alert";
+import { Link } from "react-router-dom";
 
 function AccessForm(props) {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ function AccessForm(props) {
   const [data, setData] = useState({
     email: "",
     password: "",
+    roles: {},
+    nickname: "",
+    dateofbirth: "",
+    avatar: "blank_avatar.jpg",
   });
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +27,10 @@ function AccessForm(props) {
         setData({
           email: "",
           password: "",
+          roles: {},
+          nickname: "",
+          dateofbirth: "",
+          avatar: "blank_avatar.jpg",
         });
       });
     } else {
@@ -46,13 +55,13 @@ function AccessForm(props) {
       {loading && <Spinner />}
       {status === "succeeded" &&
         user.status === "failed" &&
-        props.type === "Register" && (
+        props.action === "Register" && (
           <Alert type="error" message={user.error} />
         )}
       {status === "succeeded" &&
         user.status === "succeeded" &&
-        props.type === "Register" && (
-          <Alert type="success" message={user.data.info} />
+        props.action === "Register" && (
+          <Alert type="success" message="New user successfully created!" />
         )}
       {!loading && (
         <form className={styles.defaultForm} onSubmit={handleSubmit}>
@@ -73,7 +82,36 @@ function AccessForm(props) {
             onChange={handleChange}
             required
           />
+          {props.action === "Register" && (
+            <>
+              <input
+                type="nickname"
+                name="nickname"
+                placeholder="nickname"
+                value={data.nickname}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="date"
+                name="dateofbirth"
+                value={data.dateofbirth}
+                onChange={handleChange}
+                required
+              />
+            </>
+          )}
+
           <button type="submit">{props.action}</button>
+          {props.action !== "Register" && (
+            <>
+              {" "}
+              <div style={{ textAlign: "center", paddingTop: "1em" }}>
+                If you are not registered yet, you can{" "}
+                <Link to="/register">register here</Link>
+              </div>
+            </>
+          )}
         </form>
       )}
     </div>

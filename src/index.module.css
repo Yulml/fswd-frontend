@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   border: 0;
+  color: #f9f9f9;
 }
 :root {
   font-size: 0.785rem;
@@ -13,18 +14,26 @@
   --purple: #6f42c1;
   --pink: #d63384;
   --red: #dc3545;
+  --nred: #e30012;
   --orange: #fd7e14;
   --yellow: #ffc107;
   --green: #198754;
   --teal: #20c997;
   --cyan: #0dcaf0;
-  --dark: #292a2b;
+  --dark: #232323;
+  --darker: #1c1b1b;
   --light-gray: #d0dbe3;
+  --broken-white: #f9f9f9;
+  --light-purple: #8050bf;
+  --lighter-purple: #a17ecf;
+  --dark-lesser: #2a2a2c;
+  --dark-least: #2f2f31;
 }
 
 /* Vertical and horizontal centering */
 
 .flexCenter {
+  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +50,7 @@
 .defaultForm {
   width: 40%;
   padding: 1.5em 1em;
-  background-color: var(--light-gray);
+  background-color: var(--dark-lesser);
   border-radius: 0.3rem;
   font-size: 1.2rem;
 }
@@ -51,10 +60,13 @@
   padding: .5rem .3rem;
   margin: 1em 0 0;
   border-radius: 0.3rem;
-  background-color: white;
+  background-color: var(--dark-least);
   font-size: 1.5rem;
 }
+.defaultForm input {
+	border: 1px solid #3c3c3f;
+}
 .defaultForm button {
-  color: white;
-  background-color: var(--blue);
+  color: var(--broken-white);
+  background-color: var(--light-purple);
 }

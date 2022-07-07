@@ -1,0 +1,51 @@
+.container {
+    width: 100vw;
+    display: -webkit-flex;
+    display: flex;
+    justify-content:space-between;
+    margin: -2em;
+}
+
+.leftside {
+    width: 49vw;
+    padding: 1em;
+    background-size:cover;
+    background-position:center top;
+    background-image: url('http://i.stack.imgur.com/Dj7eP.jpg');
+    min-height: 85vh;
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+      display: -webkit-block;
+      display:block;
+  }
+  .leftside {
+      width: 100vw;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 576px) {
+  .example {background: green;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .example {background: blue;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .example {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .example {background: pink;}
+}
+
+/* Extra large devices (Even larger laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1400px) {
+  .example {background: pink;}
+}

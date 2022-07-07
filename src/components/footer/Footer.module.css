@@ -1,10 +1,10 @@
 .footer {
+  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--dark);
   padding: 1em;
-  background-color: var(--green);
+  background: linear-gradient(45deg, #8050bf, rgb(0, 0, 0));
   color: white;
   font-weight: bold;
   font-family: fredoka;

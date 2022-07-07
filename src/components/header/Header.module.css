@@ -1,10 +1,23 @@
-.nav {
+.navContainer {
+  display: -webkit-flex;
   display: flex;
-  padding: 0.9em;
-  list-style-type: none;
+  padding: 0 2em;
   background-color: var(--dark);
+}
+
+.navContainer > .sides {
+  width: 20vw;
+}
+.navContainer > .middle {
+  width: 60vw;
+}
+
+.nav {
+  display: -webkit-flex;
+  display: flex;
+  list-style-type: none;
   font-size: 1.3rem;
-  min-height: 10vh;
+  height: 10vh;
   align-items: center;
 }
 .nav > li {
@@ -13,33 +26,49 @@
 .nav > li > a {
   display: block;
   padding: 0.5em 1em;
-  background-color: var(--red);
-  color: #fff;
+  background-color: var(--light-purple);
+  color: var(--broken-white);
   text-decoration: none;
 }
 .nav > li + li {
   margin-left: 1.5em;
+}
+.nav > .navDown {
+  position: relative;
+}
+.nav > .navDown:hover .dropDown {
+  display: block;
 }
 .nav > .navRight {
   margin-left: auto;
   position: relative;
   display: inline-block;
   padding: 0.5em 1em;
-  background-color: var(--red);
-  color: #fff;
+  background-color: var(--light-purple);
+  color: var(--broken-white);
 }
+
 /* .nav > .navRight > a.noClick {
   pointer-events: none;
 } */
+
+.logo {
+  width: 200px;
+  min-height: 10vh;
+  background-color: black;
+  display: block;
+}
+
 .dropDown {
   display: none;
+  list-style-type: none;
   position: absolute;
   right: 0;
   top: 100%;
   width: 100%;
-  padding: 1em 0;
+  padding-top: 1em;
   font-size: 1.2rem;
-  background-color: #f9f9f9;
+  background-color: var(--lighter-purple);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -52,10 +81,30 @@
 }
 .dropDown li a {
   text-align: center;
-  color: var(--red);
+  text-decoration: none;
+  background-color: var(--light-purple);
+  color: var(--broken-white);
   padding: 0.3em 1em;
 }
 .dropDown li a:hover {
-  background-color: var(--red);
-  color: white;
+  background-color: var(--broken-white);
+  color: var(--light-purple);
+}
+
+/* Fade */
+.hvrFade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvrFade:hover, .hvrFade:focus, .hvrFade:active {
+  background-color: var(--broken-white);
+  color: var(--light-purple);
 }
