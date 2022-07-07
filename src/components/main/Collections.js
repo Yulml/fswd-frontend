@@ -19,8 +19,7 @@ const CollectionsPage = () => {
   }, []);
 
   return (
-    <Fragment>
-    <div>
+    <div className={styles.container}>
     <h1>User Collections</h1>{" "}
         {collectors.length > 0 && (
           <ul className={styles.itemlist}>
@@ -41,7 +40,6 @@ const CollectionsPage = () => {
           </ul>
         )}
       </div>
-    </Fragment>
   );
 };
 

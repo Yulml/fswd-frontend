@@ -14,6 +14,8 @@ const CollectorPage = () => {
     setCollector(data);
   };
 
+
+
   useEffect(() => {
     fetchCollector();
   }, []);

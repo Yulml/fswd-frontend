@@ -36,18 +36,18 @@
   transform: scale(1.1);
 }
 
-h1 {
+.container h1 {
   font-size: 8rem;
   text-align: center;
 }
 
-h2 {
+.container h2 {
   font-size: 3rem;
   font-weight: 900;
   text-align: center;
 }
 
-a {
+.container a {
   text-decoration: none;
 }
 
@@ -59,11 +59,11 @@ a {
       width: 100vw;
   }
    
-  h1 {
+  .container h1 {
   font-size: 4rem;
   }
   
-  h2 {
+  .container h2 {
     font-size: 2rem;
   }
 

@@ -17,14 +17,13 @@ const PlatformPage = () => {
 
   useEffect(() => {
     fetchPlatformGames();
-  }, []);
+  }, [id]);
 
   return (
     <div>
       <div>
         <h2>This is the {platformGames.name} page</h2>
       </div>
-      
       
       
       {" "}

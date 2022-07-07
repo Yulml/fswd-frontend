@@ -1,51 +1,93 @@
 .container {
-    width: 100vw;
-    display: -webkit-flex;
-    display: flex;
-    justify-content:space-between;
-    margin: -2em;
+  width: 100vw;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  margin: -2em;
 }
 
 .leftside {
-    width: 49vw;
-    padding: 1em;
-    background-size:cover;
-    background-position:center top;
-    background-image: url('http://i.stack.imgur.com/Dj7eP.jpg');
-    min-height: 85vh;
+  width: 49vw;
+  padding: 1em;
+  background-size: cover;
+  background-position: center top;
+  background-image: url("http://i.stack.imgur.com/Dj7eP.jpg");
+  min-height: 85vh;
+}
+
+.rightside {
+  width: 50vw;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightside ul {
+  text-align: center;
+  list-style-type: none;
+}
+
+.rightside li {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh;
+  font-size: 2rem;
+}
+
+.rightside li h1 {
+  font-size: 3rem;
+  padding: 5vh 0;
+}
+
+.rightside li a {
+  margin-left: 1rem;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 576px) {
   .container {
-      display: -webkit-block;
-      display:block;
+    display: -webkit-block;
+    display: block;
   }
   .leftside {
-      width: 100vw;
+    width: 100vw;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 576px) {
-  .example {background: green;}
+  .example {
+    background: green;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .example {background: blue;}
-} 
+  .example {
+    background: blue;
+  }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .example {background: orange;}
-} 
+  .example {
+    background: orange;
+  }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .example {background: pink;}
+  .example {
+    background: pink;
+  }
 }
 
 /* Extra large devices (Even larger laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1400px) {
-  .example {background: pink;}
+  .example {
+    background: pink;
+  }
 }

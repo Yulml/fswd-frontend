@@ -13,71 +13,51 @@ function Contact() {
     <Fragment>
       <div className={styles.container}>
         <div className={styles.leftside}></div>
-        <div
-          style={{
-            width: "50vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ul style={{ textAlign: "center", listStyleType: "none" }}>
+        <div className={styles.rightside}>
+          <ul>
             {" "}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <FontAwesomeIcon
-                  icon={faUser}
-                  size="6x"
-                  color="#e30012"
-                ></FontAwesomeIcon>
+            <li>
                 <h1>Julio Moreno López</h1>
-              </div>
-            </div>
+            </li>
             <li>
               <FontAwesomeIcon
                 icon={faPhone}
-                size="3x"
+                size="2x"
                 color="#e30012"
-              ></FontAwesomeIcon>{" "}
-              Tel: +34 666 666 666
+              ></FontAwesomeIcon>
+              <a>+34 666 666 666</a>
             </li>
             <li>
               <FontAwesomeIcon
                 icon={faEnvelope}
-                size="3x"
+                size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              Email: mock@email.com
+              <a href="mailto:blog">mock@email.com</a>
             </li>
             <li>
               <FontAwesomeIcon
                 icon={faGithub}
-                size="3x"
+                size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              GitHub: https://github.com/Yulml
+              <a href="https://github.com/Yulml">https://github.com/Yulml</a>
             </li>
             <li>
               <FontAwesomeIcon
                 icon={faLinkedin}
-                size="3x"
+                size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              LinkedIn: https://github.com/Yulml
+              <a href="#">https://linkedin.com/saynotosocial</a>
             </li>
             <li>
               <FontAwesomeIcon
                 icon={faTwitter}
-                size="3x"
+                size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              Twitter: https://github.com/Yulml
+              <a href="#">https://twitter.com/saynotosocial</a>
             </li>
           </ul>
         </div>
