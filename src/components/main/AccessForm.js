@@ -13,7 +13,7 @@ function AccessForm(props) {
   const status = useSelector((state) => state.login.status);
   const error = useSelector((state) => state.login.error);
   const [data, setData] = useState({
-    email: "",
+    username: "",
     password: "",
     roles: {},
     nickname: "",
@@ -25,7 +25,7 @@ function AccessForm(props) {
     if (props.action === "Register") {
       dispatch(addNewUser(data)).then(() => {
         setData({
-          email: "",
+          username: "",
           password: "",
           roles: {},
           nickname: "",
@@ -36,7 +36,7 @@ function AccessForm(props) {
     } else {
       dispatch(signIn(data)).then(() => {
         setData({
-          email: "",
+          username: "",
           password: "",
         });
       });
@@ -68,7 +68,7 @@ function AccessForm(props) {
           <h3 className={styles.flexCenter}>{props.title}</h3>
           <input
             type="email"
-            name="email"
+            name="username"
             placeholder="email"
             value={data.email}
             onChange={handleChange}
@@ -103,6 +103,15 @@ function AccessForm(props) {
           )}
 
           <button type="submit">{props.action}</button>
+          {props.action === "Register" && (
+            <>
+              {" "}
+              <div style={{ textAlign: "center", paddingTop: "1em" }}>
+                If you are already registered, you can{" "}
+                <Link to="/login">login here</Link>
+              </div>
+            </>
+          )}
           {props.action !== "Register" && (
             <>
               {" "}

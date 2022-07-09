@@ -8,11 +8,15 @@
 
 .leftside {
   width: 49vw;
-  padding: 1em;
-  background-size: cover;
-  background-position: center top;
-  background-image: url("http://i.stack.imgur.com/Dj7eP.jpg");
   min-height: 85vh;
+}
+
+.leftside img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .rightside {
@@ -54,6 +58,10 @@
   }
   .leftside {
     width: 100vw;
+  }
+  .rightside {
+    width: 100vw;
+    margin-bottom: 2em;
   }
 }
 

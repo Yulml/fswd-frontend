@@ -2,34 +2,33 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Lists.module.css";
 
-const PlatformsPage = () => {
-  const [platforms, setPlatforms] = useState([]);
+const UsersPage = () => {
+  const [users, setUsers] = useState([]);
   const page = 1;
 
-  const fetchPlatforms = async () => {
+  const fetchUsers = async () => {
     const response = await fetch(
-      `http://localhost/fswd-backend/public/index.php/api/platform?page=${page}`
+      `http://localhost/fswd-backend/public/index.php/api/user?page=${page}`
     );
     const data = await response.json();
 
-    setPlatforms(data);
+    setUsers(data);
   };
 
   useEffect(() => {
-    fetchPlatforms();
+    fetchUsers();
   }, []);
 
   return (
     <Fragment>
-      <div>
-        <h1>Platforms</h1>{" "}
-        {platforms.length > 0 && (
+        <h1>Listed users</h1>{" "}
+        {users.length > 0 && (
           <ul className={styles.itemlist}>
-            {platforms.map((platform) => (
-              <li key={platform.name} className={styles.hvrGrow}>
-                <Link to={`/platforms/${platform.id}`}>
+            {users.map((user) => (
+              <li key={user.id} className={styles.hvrGrow}>
+                <Link to={`/user/${user.id}`}>
                   <div className={styles.item}>
-                    <h2>{platform.name}</h2>
+                    <h2>{user.nickname}</h2>
                     <div
                       className={styles.itembox}
                       style={{
@@ -39,14 +38,13 @@ const PlatformsPage = () => {
                     ></div>
                   </div>
                 </Link>
-                {platform.picture}
+                {user.avatar}
               </li>
             ))}
           </ul>
         )}
-      </div>
     </Fragment>
   );
 };
 
-export default PlatformsPage;
+export default UsersPage;

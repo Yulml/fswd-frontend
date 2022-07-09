@@ -6,13 +6,14 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import imgSelf from "../../../assets/images/meself.jpg";
 import styles from "./Contact.module.css";
 
 function Contact() {
   return (
     <Fragment>
       <div className={styles.container}>
-        <div className={styles.leftside}></div>
+        <div className={styles.leftside}><img src={imgSelf} alt={`This is me!`} /></div>
         <div className={styles.rightside}>
           <ul>
             {" "}
@@ -41,7 +42,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              <a href="https://github.com/Yulml">https://github.com/Yulml</a>
+              <a href="https://github.com/Yulml">Yulml</a>
             </li>
             <li>
               <FontAwesomeIcon
@@ -49,7 +50,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              <a href="#">https://linkedin.com/saynotosocial</a>
+              <a href="#">Julio Moreno López</a>
             </li>
             <li>
               <FontAwesomeIcon
@@ -57,7 +58,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              <a href="#">https://twitter.com/saynotosocial</a>
+              <a href="#">@Juliotwitter</a>
             </li>
           </ul>
         </div>

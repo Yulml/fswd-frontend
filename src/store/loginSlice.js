@@ -30,7 +30,7 @@ export const signIn = createAsyncThunk(
   "login/signIn",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await fetch(baseURL, {
+      const response = await fetch(baseURL + "/login_check", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

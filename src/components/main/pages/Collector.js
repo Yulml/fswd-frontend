@@ -1,62 +1,45 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import styles from "./Collector.module.css";
+import { useParams } from "react-router-dom";
 
 const CollectorPage = () => {
-  const [collector, setCollector] = useState([]);
+  const [collectorGames, setCollectorGames] = useState([]);
+  const { id } = useParams();
 
-  const fetchCollector = async () => {
+  const fetchCollectorGames = async () => {
     const response = await fetch(
-      `http://localhost/fswd-backend/public/index.php/api/user/${collector.id}/game/get`
+      `http://localhost/fswd-backend/public/index.php/api/user/${id}/game/get`
     );
     const data = await response.json();
-
-    setCollector(data);
+    setCollectorGames(data);
   };
 
-
-
   useEffect(() => {
-    fetchCollector();
-  }, []);
+    fetchCollectorGames();
+  }, [id]);
 
   return (
-    <Fragment>
-    <div>
-    <h2>This is the USERCOLLECTOR page</h2>{" "}
-        {collector.length > 0 && (
-          <ul style={{display: "flex",
-            flexWrap: "wrap", justifyContent: "space-around"}}>
-            {collector.map((collector) => (
-              <li key={collector.nickname} className={styles.hvrGrow}><Link to={`/collections/${collector.id}`}>
-                          
-                <div
-                  className="Tarjeta-container"
-                  style={{
-                    width: "fit-content"
-                  }}
-                >
-                  <div style={{ padding: 16 }}>
-                    <h1
-                      style={{
-                        fontSize: 24,
-                        fontWeight: 900,
-                        textAlign: "center",
-                      }}
-                    >
-                      {collector.nickname}
-                    </h1>
-                    <div className={styles.avatar} style={{backgroundImage: "url('http://i.stack.imgur.com/Dj7eP.jpg')", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}></div>
-                  </div>
-                </div></Link>
-
-                {collector.avatar}
-              </li>
-            ))}
-          </ul>
-        )}
+    <div className={styles.container}>
+      <div className={styles.container}>
+        <h1>User Collections</h1>{" "}
+        <ul>
+          {collectorGames.map((collector) => (
+            <li key={`Collect${collector.id}`}>
+              <div>Usuario:{collector.nickname}</div>
+              <ul>
+                {collector.owneds.map((owneds) => (
+                  <li key={`Owneds${owneds.id}`}>
+                    <p>{`Game Name: ${owneds.game.name}`}</p>
+                    <p>{`Genre: ${owneds.game.genre.name}`}</p>
+                    <p>{`Platform: ${owneds.game.platform.name}`}</p>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}{" "}
+        </ul>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

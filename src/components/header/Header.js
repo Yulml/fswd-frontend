@@ -44,13 +44,19 @@ function Header() {
             }}
           >
             <li>
-              <Link to="/" className={styles.hvrFade}>Home</Link>
+              <Link to="/" className={styles.hvrFade}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/collections" className={styles.hvrFade}>Collections</Link>
+              <Link to="/collections" className={styles.hvrFade}>
+                Collections
+              </Link>
             </li>
             <li className={styles.navDown}>
-              <Link to="/platforms" className={styles.hvrFade}>Platforms</Link>
+              <Link to="/platforms" className={styles.hvrFade}>
+                Platforms
+              </Link>
               {platforms.length > 0 && (
                 <ul className={styles.dropDown}>
                   {platforms.map((platform) => (
@@ -64,7 +70,9 @@ function Header() {
               )}
             </li>
             <li>
-              <Link to="/contact" className={styles.hvrFade}>Contact</Link>
+              <Link to="/contact" className={styles.hvrFade}>
+                Contact
+              </Link>
             </li>
           </ul>
         </div>
@@ -76,16 +84,27 @@ function Header() {
                 Access
                 <ul className={styles.dropDown}>
                   <li>
-                    <Link to="/login" className={styles.hvrFade}>Log in</Link>
+                    <Link to="/login" className={styles.hvrFade}>
+                      Log in
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/register" className={styles.hvrFade}>Sign up</Link>
+                    <Link to="/register" className={styles.hvrFade}>
+                      Sign up
+                    </Link>
                   </li>
                 </ul>
               </li>
             )}
             {logged && (
-              <li className={styles.navRight}>
+              <li>
+                <Link to="/dashboard" className={styles.hvrFade}>
+                  User Panel
+                </Link>
+              </li>
+            )}
+            {logged && (
+              <li>
                 <Link to="/" onClick={handleLogOut} className={styles.hvrFade}>
                   Log out
                 </Link>
