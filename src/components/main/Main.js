@@ -1,14 +1,15 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import styles from "./Main.module.css";
-import HomePage from "./pages/Home";
-import ContactPage from "./pages/Contact";
-import CollectionsPage from "./pages/Collections";
-import PlatformsPage from "./pages/Platforms";
-import PlatformPage from "./pages/Platform";
-import AccessForm from "./AccessForm";
-import { NotFound } from "./NotFound";
-import Dashboard from "./Dashboard";
-import CollectorPage from "./pages/Collector";
+import HomePage from "./pages/home/Home";
+import ContactPage from "./pages/contact/Contact";
+import CollectionsPage from "./pages/collections/Collections";
+import PlatformsPage from "./pages/platforms/Platforms";
+import PlatformPage from "./pages/platform/Platform";
+import AccessForm from "./pages/accessform/AccessForm";
+import { NotFound } from "./pages/notfound/NotFound";
+import Dashboard from "./pages/dashboard/Dashboard";
+import UserProfile from "./pages/user/User";
+import CollectorPage from "./pages/collector/Collector";
 
 function Main() {
   return (
@@ -21,6 +22,7 @@ function Main() {
         <Route path="platforms/:id" element={<PlatformPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="user/:id" element={<UserProfile />} />
         <Route path="login" element={<AccessForm title="Welcome" action="Log in" />} />
         <Route
           path="register"

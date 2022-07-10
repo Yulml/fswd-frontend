@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import imgSelf from "../../../assets/images/meself.jpg";
+import imgSelf from "../../../../assets/images/meself.jpg";
 import styles from "./Contact.module.css";
 
 function Contact() {
@@ -26,7 +26,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>
-              <a>+34 666 666 666</a>
+              <span>+34 666 666 666</span>
             </li>
             <li>
               <FontAwesomeIcon
@@ -50,7 +50,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              <a href="#">Julio Moreno López</a>
+              <a href="/#">Julio Moreno López</a>
             </li>
             <li>
               <FontAwesomeIcon
@@ -58,7 +58,7 @@ function Contact() {
                 size="2x"
                 color="#e30012"
               ></FontAwesomeIcon>{" "}
-              <a href="#">@Juliotwitter</a>
+              <a href="/#">@Juliotwitter</a>
             </li>
           </ul>
         </div>

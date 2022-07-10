@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser, signIn } from "../../store/loginSlice";
-import styles from "../../index.module.css";
-import Spinner from "../spinner/Spinner";
-import Alert from "../alert/Alert";
+import { addNewUser, signIn } from "../../../../store/loginSlice";
+import styles from "../../../../index.module.css";
+import Spinner from "../../../spinner/Spinner";
+import Alert from "../../../alert/Alert";
 import { Link } from "react-router-dom";
 
 function AccessForm(props) {

@@ -98,8 +98,17 @@ function Header() {
             )}
             {logged && (
               <li>
-                <Link to="/dashboard" className={styles.hvrFade}>
+                
+                <Link to={`/user/${'#'}`} className={styles.hvrFade}> {/* This should be the id of the current user */}
                   User Panel
+                </Link>
+              </li>
+            )}
+            {/* This should be seen if the current user is the admin */}
+            {logged && (
+              <li>
+                <Link to="/dashboard" className={styles.hvrFade}>
+                  Dashboard
                 </Link>
               </li>
             )}

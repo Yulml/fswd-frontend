@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Lists.module.css";
-import imgCol from "../../../assets/images/games/uyquemona.jpg";
+import styles from "../Lists.module.css";
+import imgCol from "../../../../assets/images/games/uyquemona.jpg";
 
 const CollectionsPage = () => {
   const [collectors, setCollectors] = useState([]);
@@ -36,7 +36,7 @@ const CollectionsPage = () => {
     return (
       <div className={styles.container}>
         <h1>User Collections</h1>{" "}
-        {collectors.length > 0 && ( //aqui tengo que mirar que owneds no este vacio
+        {collectors.length > 0 && ( //aqui tendria que mirar que owneds no este vacio
           <ul className={styles.itemlist}>
             {collectors.map((collector) => (
               <li key={collector.nickname} className={styles.hvrGrow}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "./Lists.module.css";
-import imgGame from "../../../assets/images/games/uyquemona.jpg";
+import styles from "../Lists.module.css";
+import imgGame from "../../../../assets/images/games/uyquemona.jpg";
 
 const PlatformPage = () => {
   const [platformGames, setPlatformGames] = useState([]);

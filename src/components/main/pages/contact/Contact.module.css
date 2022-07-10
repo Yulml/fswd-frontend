@@ -17,6 +17,7 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center top;
+  margin-bottom: -3px;
 }
 
 .rightside {
@@ -46,7 +47,7 @@
   padding: 5vh 0;
 }
 
-.rightside li a {
+.rightside li a, span {
   margin-left: 1rem;
   text-decoration: none;
 }

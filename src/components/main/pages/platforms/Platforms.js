@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Lists.module.css";
-import imgPlatform from "../../../assets/images/games/uyquemona.jpg";
+import styles from "../Lists.module.css";
+import imgPlatform from "../../../../assets/images/games/uyquemona.jpg";
 
 const PlatformsPage = () => {
   const [platforms, setPlatforms] = useState([]);
