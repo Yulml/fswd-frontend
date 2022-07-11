@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../Lists.module.css";
-import imgPlatform from "../../../../assets/images/games/uyquemona.jpg";
+import styles from "./Platforms.module.css";
 
 const PlatformsPage = () => {
   const [platforms, setPlatforms] = useState([]);
@@ -22,7 +21,7 @@ const PlatformsPage = () => {
         if (res.ok) {
           return res.json();
         } else {
-          console.log("Hubo un problema con lala respuesta");
+          console.log("Hubo un problema con la respuesta");
         }
       })
       .then((data) => {
@@ -39,22 +38,29 @@ const PlatformsPage = () => {
   } else {
     return (
       <Fragment>
-        <h1>Platforms</h1>{" "}
-        {platforms.length > 0 && (
-          <ul className={styles.itemlist}>
+        <div className={`${styles.title}`}>
+          <h1>Platforms</h1>
+        </div>
+
+        {platforms.length > 0
+            ? (<div className={`${styles.gridContainer}`}>
+              
             {platforms.map((platform) => (
-              <li key={platform.name} className={styles.hvrGrow}>
-                <Link to={`/platforms/${platform.id}`}>
-                  <div className={styles.item}>
-                    <h2>{platform.name}</h2>
-                    <img src={imgPlatform} alt={`Platform ${platform.id}`} />
-                  </div>
-                </Link>
-                {platform.picture}
-              </li>
+              <div key={`Platform${platform.id}`}>
+              <Link to={`/platforms/${platform.id}`}>
+                <div className={`${styles.gridItem}`}>
+                  <img
+                    src={platform.picture}
+                    alt={`${platform.name}'s Logo`}
+                  />
+                </div>
+                <div className={`${styles.gridItemUser}`}>
+                  <h2>{platform.name}</h2>
+                </div>
+              </Link></div>
             ))}
-          </ul>
-        )}
+          </div>
+        ) : ""}
       </Fragment>
     );
   }

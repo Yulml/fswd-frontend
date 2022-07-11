@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "../Lists.module.css";
-import imgGame from "../../../../assets/images/games/uyquemona.jpg";
+import styles from "./Platform.module.css";
 
 const PlatformPage = () => {
   const [platformGames, setPlatformGames] = useState([]);
@@ -38,28 +37,45 @@ const PlatformPage = () => {
     return <div>Loading</div>;
   } else {
     return (
-      <div>
-        <div>
-          <h2>This is the {platformGames.name} page</h2>
-          <p>This is the picture: {platformGames.picture}</p>
+
+      <Fragment>
+
+
+        <div className={`${styles.title}`}>
+          <h1>{platformGames.name} games</h1>
         </div>
 
-        <ul className={styles.itemlist}>
           {platformGames.games.length > 0
-            ? platformGames.games.map((game) => (
-                <li key={`Game${game.id}`} className={styles.hvrGrow}>
-                  <div className={styles.item}>
-                    <h2>{game.name}</h2>
-                    <img src={imgGame} alt={`Game ${game.id}`} />
-                    <button type="button" onClick={""}>
-                      Add to my collection
-                    </button>
-                  </div>
-                </li>
-              ))
-            : ""}
-        </ul>
-      </div>
+            ? (
+              <div className={`${styles.gridContainer}`}>
+                {platformGames.games.map((game) => (
+                    <div key={`Game${game.id}`}>
+                    <div className={`${styles.gridItem}`}>
+                    <img
+                      src={`http://localhost:8080/uploads/games/${game.cover}`}
+                      alt={`Game ${game.name}`}
+                    />
+                    
+                    </div>
+                    <div className={`${styles.itemTitle}`}>
+
+
+                    <div><h2>{game.name}</h2></div>
+
+
+                    <div style={{marginLeft: "auto"}}>
+                      <button className={`${styles.colBtn} ${styles.hvrBackPulse}`} type="button" onClick={""}>
+                      +
+                    </button></div>
+                    
+                    
+                    </div>
+
+                    </div>
+                ))}
+              </div>
+            ) : ""}
+      </Fragment>
     );
   }
 };

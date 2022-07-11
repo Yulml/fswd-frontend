@@ -3,13 +3,25 @@ import { loginActions } from "../../store/loginSlice";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 function Header() {
   const logged = useSelector((state) => state.login.login.isLogged);
 
+  console.log(logged);
+
+  let tokenVariable = localStorage.getItem("token");
+  let roleUser='';
+  if((tokenVariable!==null)&&(tokenVariable!==undefined)){
+      roleUser = jwt_decode(localStorage.getItem("token"));
+      roleUser=roleUser.roles[0];
+  }
+
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(loginActions.logOut());
+    localStorage.removeItem("token");
+    window.location.href='/';
   };
 
   const [platforms, setPlatforms] = useState([]);
@@ -31,17 +43,12 @@ function Header() {
   return (
     <header>
       <div className={styles.navContainer}>
-        <div className={styles.sides}>
-          <span className={styles.logo}>LOGOTIPO</span>
+        <div>
+          <Link to="/" className={styles.logo}>The Collector's Den</Link>
         </div>
-        <div className={styles.middle}>
+        <div>
           <ul
             className={styles.nav}
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              alignContent: "center",
-            }}
           >
             <li>
               <Link to="/" className={styles.hvrFade}>
@@ -77,9 +84,9 @@ function Header() {
           </ul>
         </div>
 
-        <div className={styles.sides}>
+        <div>
           <ul className={styles.nav}>
-            {!logged && (
+            {roleUser==='' && (
               <li className={styles.navRight}>
                 Access
                 <ul className={styles.dropDown}>
@@ -96,23 +103,24 @@ function Header() {
                 </ul>
               </li>
             )}
-            {logged && (
+            {(roleUser==='ROLE_REGISTERED' || roleUser==='ROLE_ADMIN') && (
               <li>
-                
-                <Link to={`/user/${'#'}`} className={styles.hvrFade}> {/* This should be the id of the current user */}
+                <Link to={`/user/${"#"}`} className={styles.hvrFade}>
+                  {" "}
+                  {/* This should be the id of the current user */}
                   User Panel
                 </Link>
               </li>
             )}
             {/* This should be seen if the current user is the admin */}
-            {logged && (
+            {roleUser==='ROLE_ADMIN' && (
               <li>
                 <Link to="/dashboard" className={styles.hvrFade}>
                   Dashboard
                 </Link>
               </li>
             )}
-            {logged && (
+            {roleUser!=='' && (
               <li>
                 <Link to="/" onClick={handleLogOut} className={styles.hvrFade}>
                   Log out

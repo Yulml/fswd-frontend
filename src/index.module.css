@@ -41,10 +41,10 @@
 .flexColumn {
   flex-direction: column;
 }
-.w100{
+.w100 {
   width: 100%;
 }
-.h100{
+.h100 {
   height: 100%;
 }
 .defaultForm {

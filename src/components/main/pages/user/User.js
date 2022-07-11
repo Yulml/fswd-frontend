@@ -1,28 +1,28 @@
 //import { Navigate } from "react-router-dom";
 //import { AuthContext } from "../components/AuthContext";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 export default function UserProfile() {
+  let tokenVariable = localStorage.getItem("token");
+  let roleUser = "";
+  if (tokenVariable !== null && tokenVariable !== undefined) {
+    roleUser = jwt_decode(localStorage.getItem("token"));
+    roleUser = roleUser.roles[0];
+  }
 
-  // const { token, setToken } = useContext(AuthContext);
-
-  // if (!token) return <Navigate to="/login" replace />;
-
-  const [allUsers, setAllUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
-  const page = 1;
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch(
-      `http://localhost/fswd-backend/public/index.php/api/user?page=${page}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`http://localhost/fswd-backend/public/index.php/api/user/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -32,12 +32,12 @@ export default function UserProfile() {
       })
       .then((data) => {
         setLoading(false);
-        setAllUsers(data);
+        setUser(data);
       })
       .catch(function (error) {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       });
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <div>Loading</div>;
@@ -45,23 +45,43 @@ export default function UserProfile() {
     return (
       <div>
         <div>
-          <h1>This is the Dashboard page</h1>
+          <h1>This is the User Panel page</h1>
         </div>
 
         <ul>
-          {allUsers.length > 0
-            ? allUsers.map((user) => (
+          <li>
+            {" "}
+            <ul>
+              {user.map((user) => (
                 <li key={`User${user.id}`}>
-                  <div>
-                  <Link to={`/collections/${user.id}`}><h2>{user.nickname}</h2></Link>
-                  </div>
+                  <ul>
+                    <li>
+                      <img
+                        src={user.avatar}
+                        alt={`${user.nickname}'s avatar`}
+                      />
+                    </li>
+                    <li>
+                      <Link to={`/collections/${user.id}`}>COLLECTION</Link>
+                    </li>
+                    <li>{user.email}</li>
+                    <li>{user.password}</li>
+                    <li>{user.nickname}</li>
+                    {roleUser === "ROLE_ADMIN" && <li>{user.roles[0]}</li>}
+                    {roleUser === "ROLE_ADMIN" && (
+                      <li>
+                        <button type="button" onClick={""}>
+                          Delete user
+                        </button>
+                      </li>
+                    )}
+                  </ul>
                 </li>
-              ))
-            : ""}
+              ))}
+            </ul>
+          </li>
         </ul>
       </div>
     );
   }
-};
-
-
+}

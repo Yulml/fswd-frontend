@@ -1,10 +1,10 @@
 //import { Navigate } from "react-router-dom";
 //import { AuthContext } from "../components/AuthContext";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
-
   // const { token, setToken } = useContext(AuthContext);
 
   // if (!token) return <Navigate to="/login" replace />;
@@ -43,25 +43,33 @@ export default function Dashboard() {
     return <div>Loading</div>;
   } else {
     return (
-      <div>
-        <div>
-          <h1>This is the Dashboard page</h1>
+      <Fragment>
+        <div className={`${styles.title}`}>
+          <h1>Dashboard</h1>
         </div>
 
-        <ul>
-          {allUsers.length > 0
-            ? allUsers.map((user) => (
-                <li key={`User${user.id}`}>
-                  <div>
-                  <Link to={`/collections/${user.id}`}><h2>{user.nickname}</h2></Link>
+        {allUsers.length > 0 ? (
+          <div className={`${styles.gridContainer}`}>
+            {allUsers.map((user) => (
+              <div key={`User ${user.id}`}>
+                <Link to={`/user/${user.id}`}>
+                  <div className={`${styles.gridItem}`}>
+                    <img
+                      src={`http://localhost:8080/uploads/avatars/${user.avatar}`}
+                      alt={`${user.nickname}'s avatar`}
+                    />
+                    <div
+                      className={`${styles.gridItemUser}`}
+                    >{`${user.nickname}`}</div>
                   </div>
-                </li>
-              ))
-            : ""}
-        </ul>
-      </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
+      </Fragment>
     );
   }
-};
-
-
+}

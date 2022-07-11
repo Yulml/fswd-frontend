@@ -1,6 +1,55 @@
-.avatar {
-  width: 100px;
-  height: 100px;
+.gridItem {
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.gridItem img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gridItem:hover {
+  filter: opacity(0,9);
+  transform: scale(1.04);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns:repeat(auto-fill, minmax(150px, 300px));
+  grid-auto-rows: 1fr;
+  align-items: top;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.gridItemTitle {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-template-rows: 50px;
+}
+
+
+
+.title > h1 {
+  text-align: center;
+  padding: 20px;
+  font-size: calc(30px + (60 - 30) * ((100vw - 300px) / (1920 - 300)));
+  text-transform: uppercase;
+}
+
+.itemTitle {
+  display:flex;
+  padding: 10px 0;
+}
+
+.itemTitle > h2 {
+  text-align: center;
+  padding: 10px;
+  font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1920 - 300)));
+  text-transform: uppercase;
 }
 
 .colBtn {
@@ -13,49 +62,11 @@
   border-radius: 50%;
 }
 
-.container {
-  display:flex;
-  align-items: center;
-  justify-content: center;
+.gridItemUser {
+  text-align: center;
+  font-size: calc(15px + (30 - 15) * ((100vw - 300px) / (1920 - 300)));
 }
 
-.item {
-  list-style-type: none;
-}
-
-.tg {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.tg td {
-  font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1920 - 300)));
-  overflow: hidden;
-  padding: 10px 5px;
-  word-break: normal;
-}
-.tg th {
-  font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1920 - 300)));
-  font-weight: normal;
-  overflow: hidden;
-  padding: 10px 5px;
-  word-break: normal;
-}
-.tg .tg0Lax {
-  text-align: left;
-  vertical-align: top;
-}
-@media screen and (max-width: 767px) {
-  .tg {
-    width: auto !important;
-  }
-  .tg col {
-    width: auto !important;
-  }
-  .tgWrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
 /* Back Pulse */
 @-webkit-keyframes hvrBackPulse {
   50% {
@@ -67,7 +78,6 @@
     background-color: var(--light-purple);
   }
 }
-
 .hvrBackPulse {
   display: inline-block;
   vertical-align: middle;

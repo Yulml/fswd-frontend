@@ -8,7 +8,7 @@
   color: white;
   font-weight: bold;
   font-family: fredoka;
-  font-size: 1.4rem;
+  font-size: calc(10px + (30 - 10) * ((100vw - 300px) / (1920 - 300)));
   height: 5vh;
 }
 .heart {

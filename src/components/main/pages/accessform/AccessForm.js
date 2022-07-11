@@ -15,7 +15,7 @@ function AccessForm(props) {
   const [data, setData] = useState({
     username: "",
     password: "",
-    roles: {},
+    roles: ['ROLE_REGISTERED'],
     nickname: "",
     dateofbirth: "",
     avatar: "blank_avatar.jpg",
@@ -27,18 +27,20 @@ function AccessForm(props) {
         setData({
           username: "",
           password: "",
-          roles: {},
+          roles: ['ROLE_REGISTERED'],
           nickname: "",
           dateofbirth: "",
           avatar: "blank_avatar.jpg",
         });
       });
     } else {
-      dispatch(signIn(data)).then(() => {
+      dispatch(signIn(data)).then((response) => {
+        localStorage.setItem("token", response.payload.token);
         setData({
           username: "",
           password: "",
         });
+        window.location.href='/';
       });
     }
   };
