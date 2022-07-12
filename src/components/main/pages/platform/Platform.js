@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./Platform.module.css";
 import jwt_decode from "jwt-decode";
+import Spinner from "../../../spinner/Spinner";
 
 const PlatformPage = () => {
   let tokenVariable = localStorage.getItem("token");
@@ -61,7 +62,7 @@ const PlatformPage = () => {
   }
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   } else {
     return (
 

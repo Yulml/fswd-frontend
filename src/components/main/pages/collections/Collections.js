@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Collections.module.css";
+import Spinner from "../../../spinner/Spinner";
 
 const CollectionsPage = () => {
   const [collectors, setCollectors] = useState([]);
@@ -31,19 +32,18 @@ const CollectionsPage = () => {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       });
   }, []);
-
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   } else {
     return (
       <Fragment>
         <div className={`${styles.title}`}>
-          <h1>User Collections</h1>
+          <h1>Video Game Collections</h1>
         </div>
         {collectors.length > 0 && (
           <div className={`${styles.gridContainer}`}>
             {collectors.map((collector) => (
-              <Link to={`/collections/${collector.id}`}>
+              <Link to={`/collections/${collector.id}`} key={`Collect${collector.id}`}>
                 <div className={`${styles.gridItem}`}>
                   <img
                     src={`http://localhost:8080/uploads/avatars/${collector.avatar}`} alt={`${collector.nickname}'s profile pic`} 

@@ -9,7 +9,7 @@
   font-weight: bold;
   font-family: fredoka;
   font-size: calc(10px + (30 - 10) * ((100vw - 300px) / (1920 - 300)));
-  height: 5vh;
+  height: 20vh;
 }
 .heart {
   color: var(--red);

@@ -15,10 +15,26 @@
 }
 .defaultForm {
   width: 100%;
-  padding: 1.5em 1em;
+  padding: 1em 1em;
   background-color: var(--dark-lesser);
   border-radius: 0.3rem;
   font-size: 1.2rem;
+}
+
+.flexCenter > img {
+  width: 20%;
+  height: auto;
+  aspect-ratio: 1/1;
+}
+
+.flexCenter > h1 {
+padding: 1.5em;
+font-size: calc(30px + (60 - 30) * ((100vw - 300px) / (1920 - 300)));
+}
+
+.flexCenter > h2 {
+  padding: 1.5em;
+  font-size: calc(15px + (30 - 15) * ((100vw - 300px) / (1920 - 300)));
 }
 
 ul {
@@ -36,7 +52,7 @@ a {
 .defaultForm button {
   width: 100%;
   padding: .5rem .3rem;
-  margin: 1em 0 0;
+  margin: 0.5em 0 1em 0;
   border-radius: 0.3rem;
   background-color: var(--dark-least);
   font-size: 1.5rem;

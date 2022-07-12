@@ -1,9 +1,10 @@
 //import { Navigate } from "react-router-dom";
 //import { AuthContext } from "../components/AuthContext";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import styles from "./User.module.css";
+import Spinner from "../../../spinner/Spinner";
 
 export default function UserProfile() {
   let tokenVariable = localStorage.getItem("token");
@@ -13,11 +14,16 @@ export default function UserProfile() {
     roleUser = roleUser.roles[0];
   }
 
+  const [formValues, setFormValues] = useState({
+    nickname: "",
+    email: "",
+    password: "",
+  });
+
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const [avatar, setAvatar] = useState([]);
-  console.log(avatar);
+  const nav = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost/fswd-backend/public/index.php/api/user/${id}`, {
@@ -36,14 +42,45 @@ export default function UserProfile() {
       .then((data) => {
         setLoading(false);
         setUser(data);
+
+        setFormValues((prev) => ({
+          ...prev,
+          nickname: data[0].nickname,
+          email: data[0].email,
+        }));
       })
       .catch(function (error) {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       });
   }, [id]);
 
+
+  //Funcion para actualizar los useState correspondiente a cada input
+  const handleInputChange = (e) => {
+    //Ingresamos los campos del formulario
+    setFormValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //console.log(formValues);
+    fetch(`http://localhost/fswd-backend/public/index.php/api/user/edit/${id}`, {
+      method: "POST",
+      body: JSON.stringify(formValues),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        nav(`/dashboard`);
+      })
+      .catch((error) => console.log(error));
+  };
+
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   } else {
     return (
       <div className={`${styles.flexCenter}`}>
@@ -54,17 +91,13 @@ export default function UserProfile() {
               {user.map((user) => (
                 <li key={`User${user.id}`}>
                   <ul>
-                    <li>
-                      <div className={`${styles.flexCenter}`}>
-                        <img
-                          src={user.avatar}
-                          alt={`${user.nickname}'s avatar`}
-                        />
-                      </div>
-                    </li>
-                    <form className={styles.defaultForm}>
+                    <form onSubmit={handleSubmit} className={styles.defaultForm} encType="multipart/form-data">
                       <ul>
                         <li className={styles.flexCenter}>
+                          <img
+                            src={user.avatar}
+                            alt={`${user.nickname}'s avatar`}
+                          />{" "}
                           <h1>{`${user.nickname}`}</h1>
                         </li>
 
@@ -73,36 +106,31 @@ export default function UserProfile() {
                             <h2>{`Link to Collection`}</h2>
                           </Link>
                         </li>
-                        <li>
-                          <label htmlFor="avatar">
-                            Upload new avatar
-                            <input type="file" name="avatar" accept="image/*" onChange={(e) => setAvatar(e.target.files[0])}></input>
-                          </label>
-                        </li>
                         <label htmlFor="nickname">
-                          <input type="text" name="nickname"></input>
+                          Nickname
+                          <input
+                            type="text"
+                            name="nickname"
+                            placeholder="Nickname"
+                            onChange={handleInputChange}
+                            defaultValue={`${user.nickname}`}
+                          />
                         </label>
-                        <li>
+                        <li className={styles.paddingTop}>
                           <label htmlFor="email">
-                            <input type="text" name="email"></input>
+                            Email
+                            <input type="email" name="email" placeholder="Email"
+                            onChange={handleInputChange}
+                            defaultValue={`${user.email}`}></input>
                           </label>
                         </li>
-                        <li>
+                        <li className={styles.paddingTop}>
                           <label htmlFor="password">
-                            <input type="password"></input>
+                            Password
+                            <input type="password" placeholder="Password" onChange={handleInputChange}></input>
                           </label>
                         </li>
-                        <li>
-                          <label htmlFor="roles">
-                            <select name="roles">
-                              <option value={`${user.roles[0]}`}></option>
-                              <option value="['ROLE_REGISTERED']">
-                                Registered User
-                              </option>
-                              <option value="['ROLE_ADMIN']">Admin</option>
-                            </select>
-                          </label>
-                        </li>
+
                         <li>
                           <input type="submit"></input>
                         </li>

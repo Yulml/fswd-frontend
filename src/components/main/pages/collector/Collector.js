@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import styles from "./Collector.module.css";
 import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import Spinner from "../../../spinner/Spinner";
 
 const CollectorPage = () => {
   let tokenVariable = localStorage.getItem("token");
@@ -65,7 +66,7 @@ function getOwned(){
 
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   } else {
     return (
       <Fragment>

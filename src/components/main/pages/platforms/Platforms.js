@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Platforms.module.css";
 import jwt_decode from "jwt-decode";
+import Spinner from "../../../spinner/Spinner";
 
 const PlatformsPage = () => {
 
@@ -36,7 +37,7 @@ const PlatformsPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   } else {
     return (
       <Fragment>
