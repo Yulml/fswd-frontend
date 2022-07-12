@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import styles from "../../pages/Lists.module.css";
+import styles from "./NotFound.module.css";
 import imgNotFound from "../../../../assets/images/castle.png";
 
 export const NotFound = () => {

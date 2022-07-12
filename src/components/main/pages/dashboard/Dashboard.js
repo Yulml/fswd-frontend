@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
+  let tokenVariable = localStorage.getItem("token");
   // const { token, setToken } = useContext(AuthContext);
 
   // if (!token) return <Navigate to="/login" replace />;
@@ -14,6 +15,10 @@ export default function Dashboard() {
   const page = 1;
 
   useEffect(() => {
+    getUsers();
+  }, []);
+
+  function getUsers() {
     fetch(
       `http://localhost/fswd-backend/public/index.php/api/user?page=${page}`,
       {
@@ -37,7 +42,25 @@ export default function Dashboard() {
       .catch(function (error) {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       });
-  }, []);
+  }
+
+  function deleteUser(id)
+  {
+    fetch(
+      `http://localhost/fswd-backend/public/index.php/api/user/delete/${id}`, {
+        method:'DELETE',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenVariable}`
+        }
+      }).then((result)=>{
+        result.json().then((resp) =>{
+          console.warn.apply(resp)
+          getUsers();
+      })
+    })
+  }
+
 
   if (loading) {
     return <div>Loading</div>;
@@ -58,11 +81,12 @@ export default function Dashboard() {
                       src={`http://localhost:8080/uploads/avatars/${user.avatar}`}
                       alt={`${user.nickname}'s avatar`}
                     />
+                  </div>
+                </Link>
                     <div
                       className={`${styles.gridItemUser}`}
                     >{`${user.nickname}`}</div>
-                  </div>
-                </Link>
+                    <div className={`${styles.gridItemUser}`}><button type="button" className={`${styles.btn}`} onClick={()=>deleteUser(`${user.id}`)}>Delete</button></div>
               </div>
             ))}
           </div>

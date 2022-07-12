@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Platforms.module.css";
+import jwt_decode from "jwt-decode";
 
 const PlatformsPage = () => {
+
   const [platforms, setPlatforms] = useState([]);
   const [loading, setLoading] = useState(true);
   const page = 1;
@@ -53,9 +55,6 @@ const PlatformsPage = () => {
                     src={platform.picture}
                     alt={`${platform.name}'s Logo`}
                   />
-                </div>
-                <div className={`${styles.gridItemUser}`}>
-                  <h2>{platform.name}</h2>
                 </div>
               </Link></div>
             ))}

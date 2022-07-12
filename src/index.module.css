@@ -55,6 +55,7 @@
   font-size: 1.2rem;
 }
 .defaultForm input,
+.defaultForm select,
 .defaultForm button {
   width: 100%;
   padding: .5rem .3rem;

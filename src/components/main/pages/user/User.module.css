@@ -1,80 +1,55 @@
-.itemlist {
+.flexCenter {
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
-
-.itemlist li {
-  width: 15%;
+.flexColumn {
+  flex-direction: column;
 }
-
-.item {
-  margin: 2em 1em;
-}
-
-.item h2 {
-  text-align: center;
-  font-size: 3em;
-  padding: 0 0 2rem;
-}
-.item img {
+.w100 {
   width: 100%;
-  height: auto;
-  border-radius: 2%;
-  object-fit: cover;
-  object-position: center top;
-  aspect-ratio: 3/4;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.h100 {
+  height: 100%;
+}
+.defaultForm {
+  width: 100%;
+  padding: 1.5em 1em;
+  background-color: var(--dark-lesser);
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
 }
 
-/* Grow */
-.hvrGrow {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  transition-duration: 0.3s;
-  transition-property: transform;
+ul {
+  list-style-type: none;
 }
 
-.hvrGrow:hover,
-.hvrGrow:focus,
-.hvrGrow:active {
-  transform: scale(1.1);
-}
-
-.container h1 {
-  font-size: 8rem;
-  text-align: center;
-}
-
-.container h2 {
-  font-size: 3rem;
-  font-weight: 900;
-  text-align: center;
-}
-
-.container a {
+a {
   text-decoration: none;
 }
 
+
+
+.defaultForm input,
+.defaultForm select,
+.defaultForm button {
+  width: 100%;
+  padding: .5rem .3rem;
+  margin: 1em 0 0;
+  border-radius: 0.3rem;
+  background-color: var(--dark-least);
+  font-size: 1.5rem;
+}
+.defaultForm input {
+	border: 1px solid #3c3c3f;
+}
+.defaultForm button {
+  color: var(--broken-white);
+  background-color: var(--light-purple);
+}
+
 @media only screen and (max-width: 576px) {
-  .container {
-    display: block;
-  }
-  .leftside {
-    width: 100vw;
-  }
-
-  .container h1 {
-    font-size: 4rem;
-  }
-
-  .container h2 {
-    font-size: 2rem;
-  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

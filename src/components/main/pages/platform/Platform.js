@@ -1,8 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./Platform.module.css";
+import jwt_decode from "jwt-decode";
 
 const PlatformPage = () => {
+  let tokenVariable = localStorage.getItem("token");
+  let roleUser = "";
+  if (tokenVariable !== null && tokenVariable !== undefined) {
+    roleUser = jwt_decode(localStorage.getItem("token"));
+    roleUser = roleUser.roles[0];
+  }
   const [platformGames, setPlatformGames] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -32,6 +39,26 @@ const PlatformPage = () => {
         console.log("Hubo un problema con la petición Fetch:" + error.message);
       });
   }, [id]);
+
+  function addGame()
+  {
+    fetch(
+      `http://localhost/fswd-backend/public/index.php/api/owned/new`, {
+        method:'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenVariable}`
+        },
+        body: {
+          user_id: {},
+          game_id: {}
+        }
+      }).then((result)=>{
+        result.json().then(() =>{
+          window.alert("Game added to you collection");
+      })
+    })
+  }
 
   if (loading) {
     return <div>Loading</div>;
@@ -63,11 +90,18 @@ const PlatformPage = () => {
                     <div><h2>{game.name}</h2></div>
 
 
-                    <div style={{marginLeft: "auto"}}>
-                      <button className={`${styles.colBtn} ${styles.hvrBackPulse}`} type="button" onClick={""}>
-                      +
-                    </button></div>
                     
+                    
+
+                    {roleUser === "ROLE_ADMIN" && (
+                              <div style={{marginLeft: "auto"}}>
+                              <button className={`${styles.colBtn} ${styles.hvrBackPulse}`} type="button" onClick={()=>addGame(`${game.id}`)}>
+                              +
+                            </button></div>
+                            )}
+
+
+
                     
                     </div>
 

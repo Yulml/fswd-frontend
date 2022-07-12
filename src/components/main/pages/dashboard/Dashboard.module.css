@@ -44,3 +44,55 @@
   font-size: calc(15px + (30 - 15) * ((100vw - 300px) / (1920 - 300)));
   text-transform: uppercase;
 }
+
+.btn {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--nred);
+  border-radius: 5px;
+  padding: 10px;  font-size: calc(10px + (15 - 10) * ((100vw - 300px) / (1920 - 300)));
+  margin-top: 0.5em;
+
+}
+
+
+/* Back Pulse */
+@-webkit-keyframes hvrBackPulse {
+  50% {
+    background-color: var(--nred);
+  }
+}
+@keyframes hvrBackPulse {
+  50% {
+    background-color: var(--nred);
+  }
+}
+
+.hvrBackPulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvrBackPulse:hover, .hvrBackPulse:focus, .hvrBackPulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: var(--red);
+  background-color: var(--red);
+  color: var(--broken-white);
+}

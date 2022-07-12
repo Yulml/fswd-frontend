@@ -21,7 +21,6 @@ function Header() {
   const handleLogOut = () => {
     dispatch(loginActions.logOut());
     localStorage.removeItem("token");
-    window.location.href='/';
   };
 
   const [platforms, setPlatforms] = useState([]);
@@ -38,7 +37,7 @@ function Header() {
 
   useEffect(() => {
     fetchPlatforms();
-  }, []);
+  }, [logged]);
 
   return (
     <header>
@@ -103,15 +102,6 @@ function Header() {
                 </ul>
               </li>
             )}
-            {(roleUser==='ROLE_REGISTERED' || roleUser==='ROLE_ADMIN') && (
-              <li>
-                <Link to={`/user/${"#"}`} className={styles.hvrFade}>
-                  {" "}
-                  {/* This should be the id of the current user */}
-                  User Panel
-                </Link>
-              </li>
-            )}
             {/* This should be seen if the current user is the admin */}
             {roleUser==='ROLE_ADMIN' && (
               <li>
@@ -122,7 +112,7 @@ function Header() {
             )}
             {roleUser!=='' && (
               <li>
-                <Link to="/" onClick={handleLogOut} className={styles.hvrFade}>
+                <Link to="/login" onClick={handleLogOut} className={styles.hvrFade}>
                   Log out
                 </Link>
               </li>

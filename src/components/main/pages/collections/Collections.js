@@ -6,8 +6,11 @@ const CollectionsPage = () => {
   const [collectors, setCollectors] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
+  /* http://localhost/fswd-backend/public/index.php/api/user/collectors/get
+  we should maps this one when we have the time. It returns users WITH collections */
   useEffect(() => {
-    fetch(`http://localhost/fswd-backend/public/index.php/api/user/collectors/get`, {
+    fetch(`http://localhost/fswd-backend/public/index.php/api/user?page=1`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

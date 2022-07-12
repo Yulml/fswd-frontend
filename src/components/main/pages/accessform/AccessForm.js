@@ -4,7 +4,7 @@ import { addNewUser, signIn } from "../../../../store/loginSlice";
 import styles from "../../../../index.module.css";
 import Spinner from "../../../spinner/Spinner";
 import Alert from "../../../alert/Alert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AccessForm(props) {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ function AccessForm(props) {
   const loading = useSelector((state) => state.login.login.loading);
   const status = useSelector((state) => state.login.status);
   const error = useSelector((state) => state.login.error);
+  const nav = useNavigate();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -40,7 +41,7 @@ function AccessForm(props) {
           username: "",
           password: "",
         });
-        window.location.href='/';
+        nav("/");
       });
     }
   };

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import styles from "./User.module.css";
 
 export default function UserProfile() {
   let tokenVariable = localStorage.getItem("token");
@@ -15,6 +16,8 @@ export default function UserProfile() {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const [avatar, setAvatar] = useState([]);
+  console.log(avatar);
 
   useEffect(() => {
     fetch(`http://localhost/fswd-backend/public/index.php/api/user/${id}`, {
@@ -43,11 +46,7 @@ export default function UserProfile() {
     return <div>Loading</div>;
   } else {
     return (
-      <div>
-        <div>
-          <h1>This is the User Panel page</h1>
-        </div>
-
+      <div className={`${styles.flexCenter}`}>
         <ul>
           <li>
             {" "}
@@ -56,25 +55,59 @@ export default function UserProfile() {
                 <li key={`User${user.id}`}>
                   <ul>
                     <li>
-                      <img
-                        src={user.avatar}
-                        alt={`${user.nickname}'s avatar`}
-                      />
+                      <div className={`${styles.flexCenter}`}>
+                        <img
+                          src={user.avatar}
+                          alt={`${user.nickname}'s avatar`}
+                        />
+                      </div>
                     </li>
-                    <li>
-                      <Link to={`/collections/${user.id}`}>COLLECTION</Link>
-                    </li>
-                    <li>{user.email}</li>
-                    <li>{user.password}</li>
-                    <li>{user.nickname}</li>
-                    {roleUser === "ROLE_ADMIN" && <li>{user.roles[0]}</li>}
-                    {roleUser === "ROLE_ADMIN" && (
-                      <li>
-                        <button type="button" onClick={""}>
-                          Delete user
-                        </button>
-                      </li>
-                    )}
+                    <form className={styles.defaultForm}>
+                      <ul>
+                        <li className={styles.flexCenter}>
+                          <h1>{`${user.nickname}`}</h1>
+                        </li>
+
+                        <li className={styles.flexCenter}>
+                          <Link to={`/collections/${user.id}`}>
+                            <h2>{`Link to Collection`}</h2>
+                          </Link>
+                        </li>
+                        <li>
+                          <label htmlFor="avatar">
+                            Upload new avatar
+                            <input type="file" name="avatar" accept="image/*" onChange={(e) => setAvatar(e.target.files[0])}></input>
+                          </label>
+                        </li>
+                        <label htmlFor="nickname">
+                          <input type="text" name="nickname"></input>
+                        </label>
+                        <li>
+                          <label htmlFor="email">
+                            <input type="text" name="email"></input>
+                          </label>
+                        </li>
+                        <li>
+                          <label htmlFor="password">
+                            <input type="password"></input>
+                          </label>
+                        </li>
+                        <li>
+                          <label htmlFor="roles">
+                            <select name="roles">
+                              <option value={`${user.roles[0]}`}></option>
+                              <option value="['ROLE_REGISTERED']">
+                                Registered User
+                              </option>
+                              <option value="['ROLE_ADMIN']">Admin</option>
+                            </select>
+                          </label>
+                        </li>
+                        <li>
+                          <input type="submit"></input>
+                        </li>
+                      </ul>
+                    </form>
                   </ul>
                 </li>
               ))}

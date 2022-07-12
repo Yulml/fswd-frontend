@@ -3,6 +3,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.itemlist img {
+  width: 50%;
+  height: auto;
+  border-radius: 4px;
+}
 
 .itemlist li {
   width: 15%;
@@ -46,7 +51,8 @@
 }
 
 .container h1 {
-  font-size: 8rem;
+  font-size: calc(30px + (60 - 30) * ((100vw - 300px) / (1920 - 300)));
+  padding: 5vh 0;
   text-align: center;
 }
 
@@ -61,20 +67,6 @@
 }
 
 @media only screen and (max-width: 576px) {
-  .container {
-    display: block;
-  }
-  .leftside {
-    width: 100vw;
-  }
-
-  .container h1 {
-    font-size: 4rem;
-  }
-
-  .container h2 {
-    font-size: 2rem;
-  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
